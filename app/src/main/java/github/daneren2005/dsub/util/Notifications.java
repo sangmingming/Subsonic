@@ -26,14 +26,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Handler;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.media.app.NotificationCompat.MediaStyle;
+
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RemoteViews;
-import android.widget.TextView;
 
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.activity.SubsonicActivity;
@@ -82,7 +81,7 @@ public final class Notifications {
 		if (usingMediaStyleNotification) {
 			RemoteControlClientLP remoteControlClient = (RemoteControlClientLP) downloadService.getRemoteControlClient();
 
-			android.support.v4.media.app.NotificationCompat.MediaStyle mediaStyle = new android.support.v4.media.app.NotificationCompat.MediaStyle()
+			MediaStyle mediaStyle = new MediaStyle()
 					.setMediaSession(remoteControlClient.getMediaSession().getSessionToken());
 
 			if (isSingle) {
@@ -99,7 +98,7 @@ public final class Notifications {
 				.setSmallIcon(R.drawable.stat_notify_playing)
 				.setContentTitle(title)
 				.setContentText(artist + " - " + album)
-				.setVisibility(Notification.VISIBILITY_PUBLIC)
+				.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 				.setStyle(mediaStyle);
 
 			// Set the album art.
